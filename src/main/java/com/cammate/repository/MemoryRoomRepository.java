@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MemoryRoomRepository implements RoomRepository {
 
     private static Map<String, Room> store = new HashMap<>();
@@ -21,7 +23,6 @@ public class MemoryRoomRepository implements RoomRepository {
 
     @Override
     public Optional<Room> findRoomById(String id) {
-        System.out.println("store size is "+store.size());
         store.forEach(
                 (key,val)-> {System.out.print(key); System.out.println(val);}
         );
@@ -43,6 +44,10 @@ public class MemoryRoomRepository implements RoomRepository {
 
         return store.values().stream().filter(room -> macAddressList.contains(room.getMacAddress()))
                 .collect(Collectors.toList());
+    }
+
+    public Optional<Room> removeRoomById(String id){
+        return Optional.ofNullable(store.remove(id));
     }
 
     public void clearStore(){
