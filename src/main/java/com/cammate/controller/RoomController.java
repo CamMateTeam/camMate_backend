@@ -40,8 +40,7 @@ public class RoomController {
     @Operation(summary = "주변 방 조회 API")
     @GetMapping
     public ApiResponse<List<Room>> findRoom(@RequestParam List<String> macAddress){
-        System.out.println("hi");
-        List<Room> room = roomService.findWithMacAddress(macAddress);
+        List<Room> room = roomService.findRoom();
         return ApiResponse.createSuccess(room);
     }
 

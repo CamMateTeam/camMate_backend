@@ -17,6 +17,10 @@ public class RoomService {
         return dbRoomRepository.findByMacAddressIn(macAddress);
     }
 
+    public List<Room> findRoom(){
+        return dbRoomRepository.findAll();
+    }
+
     public Room saveRoom(RoomRequest roomRequest){
         Room room = new Room();
         room.setNickname(roomRequest.getNickname());
